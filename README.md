@@ -1,5 +1,8 @@
 # Cisco
-Pembelajaran Cisco
+Assalamualaikum Warahmatullahi Wabarakatuh
+
+Selamat datang 
+Kali ini saya akan membagikan pembelajaran Konfigurasi Network sederhana dengan mengguanakan Cisco packet tracer
 
 Tool yang dibutuhkan
 Cisco Packet Tracer
