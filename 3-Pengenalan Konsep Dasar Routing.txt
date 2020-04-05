@@ -1,23 +1,21 @@
-https://www.youtube.com/watch?v=Yyet1BIs67A
-
 Pengenalan Konsep Dasar Routing
 Setting seperti di Prakter
-Komp 1
+PC1
 192.168.1.1
-Komp 2
+PC2
 192.168.1.2
 
-Komp 3
+PC3
 192.168.2.1
-Komp 4
+PC4
 192.168.2.2
 
 ====
 Di praktek ini kita pake Subnetmask Class C
 255.255.255.0
 
-Komp 1 hanya bisa konek dengan Komp2
-Komp 3 hanya bisa konek dengan Komp4
+PC1 hanya bisa konek dengan PC2
+PC3 hanya bisa konek dengan PC4
 
 Agar bisa saling konek semua kita butuh Router
 Buat seperti gambar
@@ -75,6 +73,9 @@ PC4 ke PC2
 	C:\>ping 192.168.1.2
 	Reply from 192.168.2.1: bytes=32 time<1ms TTL=127
 
+
+Sumber pembelajaran :
+https://www.youtube.com/watch?v=Yyet1BIs67A
 
 	
 
