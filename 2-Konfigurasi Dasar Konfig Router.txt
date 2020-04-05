@@ -144,7 +144,7 @@ Melihat konfigurasi di StartUp Config
 	 password indonesia
 	 login
 	!
-	end
+	end.
 
 	
 	
