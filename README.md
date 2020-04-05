@@ -11,3 +11,5 @@ https://www.netacad.com/courses/packet-tracer
 
 CISCO Packet Tracer adalah software gratis.
 CISCO PacketTracer dapat berjalan baik di atas sistem oprasi Windows maupun Linux
+
+Semoga bermanfaat
