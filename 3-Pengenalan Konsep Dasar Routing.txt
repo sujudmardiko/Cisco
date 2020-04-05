@@ -1,0 +1,84 @@
+https://www.youtube.com/watch?v=Yyet1BIs67A
+
+Pengenalan Konsep Dasar Routing
+Setting seperti di Prakter
+Komp 1
+192.168.1.1
+Komp 2
+192.168.1.2
+
+Komp 3
+192.168.2.1
+Komp 4
+192.168.2.2
+
+====
+Di praktek ini kita pake Subnetmask Class C
+255.255.255.0
+
+Komp 1 hanya bisa konek dengan Komp2
+Komp 3 hanya bisa konek dengan Komp4
+
+Agar bisa saling konek semua kita butuh Router
+Buat seperti gambar
+
+Setting Router
+================
+Router dengan 
+Jaringan pertama 
+komputer1 192.168.1.1 dan komputer2 192.168.1.2
+	Router>enable 
+	Router#configure terminal 
+	Router(config)#interface fastEthernet 0/0	--- Cek interface caranya cek Fa berapa didekatkan mouse ke router
+	Router(config-if)#ip address 192.168.1.254 255.255.255.0	--- pake 192.168.1.254 (jml max penghuni 254)
+	Router(config-if)#no shutdown 	--- untuk megaktifkan pake no shutdown ini
+
+Jaringan kedua (caranya sama)
+komputer1 192.168.2.1 dan komputer2 192.168.2.2
+	Router>enable 
+	Router#configure terminal 
+	Router(config)#interface fastEthernet 1/0	--- Cek interface caranya cek Fa berapa didekatkan mouse ke router
+	Router(config-if)#ip address 192.168.2.254 255.255.255.0	--- pake 192.168.2.254 (jml max penghuni 254)
+	Router(config-if)#no shutdown 	--- untuk megaktifkan pake no shutdown ini
+	
+Tes Koneksi
+Dari PC 1 dan 2
+	ping 192.168.1.254 (alamat router)
+
+Dari PC 3 dan 4
+	ping 192.168.2.254 (alamat router)
+
+Dari Router
+ke komputer 3
+	Router>ping 192.168.2.1
+	!!!!!
+	Success rate is 100 percent (5/5), round-trip min/avg/max = 0/1/3 ms
+dst
+
+Sekarang kita test koneksi dari Jaringan yang beda
+PC1 ke PC3
+Hasilnya
+	C:\>ping 192.168.2.1
+	Pinging 192.168.2.1 with 32 bytes of data:
+	Request timed out.
+RTO 
+Karena kita belum setting GATEWAY, DEFAULT GATEWAY nya masih 0.0.0.0
+Setting gateway nya itu kita isi dengan alamat routernya
+PC1 dan PC2 almatnya 192.168.1.254
+PC3 dan PC4 alamatnya 192.168.2.254
+
+Test koneksi 
+PC1 Ke PC3
+	C:\>ping 192.168.2.1
+	Reply from 192.168.2.1: bytes=32 time<1ms TTL=127
+PC4 ke PC2
+	C:\>ping 192.168.1.2
+	Reply from 192.168.2.1: bytes=32 time<1ms TTL=127
+
+
+	
+
+
+
+
+

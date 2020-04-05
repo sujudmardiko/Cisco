@@ -1,0 +1,160 @@
+Pengenalan Konfigurasi CISCO ROUTER 
+Cisco IOS (Internetwork Operating System)
+Memiliki 3 Mode
+1. User Exec Mode (User sangat terbatas)
+tandanya
+	ROUTERKU> "ada tanda ">" di nama routernya"
+
+2. Privileged Exec Mode 
+Untuk masuk ketikan "enable di user exec mode"
+Masih terbatas, belum bisa konfig router
+cara masuk
+	enable
+	ROUTERKU# "ada tanda "#" di nama routernya"
+	
+3. Global Configuration Mode
+Mode untuk bisa konfig Router
+untuk masuk command "configure terminal"
+	ROUTERKU#configure terminal 
+
+
+
+KONFIGURASI DASAR ROUTER CISCO
+===========
+*Merubah hostname 
+===========
+	#hostname ROUTER_GEDUNG_B
+	Router(config)#hostname ROUTER_GEDUNG_B
+	ROUTER_GEDUNG_B(config)#
+
+*Membuat password di Router kita beri nama kunci
+===========
+ROUTER_GEDUNG_B(config)#enable password kunci
+cara cek : exit sampai ke User exec Mode
+ketik enable dan akan keluar field isian password
+	ROUTER_GEDUNG_B>enable 
+	Password: masukkan "kunci"
+
+*Konfigurasi password User Exec Mode
+===========
+Masuk ke Configure terminal
+command
+	ROUTER_GEDUNG_B(config)#line console 0
+	ROUTER_GEDUNG_B(config-line)#password indonesia  (cth pass : indonesia)
+	aktifkan password dg command	
+	ROUTER_GEDUNG_B(config-line)#login
+cara ceknya
+exit hingga keluar User Exec Mode
+hasilnya
+	User Access Verification
+	Password: 
+
+*Cek Password router 
+===========
+Hasil diatas bisa dicek dengan masuk ke Privilege Exec Mode
+	enable
+	ROUTER_GEDUNG_B#sho running-config 
+	hostname ROUTER_GEDUNG_B
+	!
+	!
+	!
+	enable password kunci  -------- ini password
+	!
+	dst dst
+	!
+	!
+	line con 0
+	 password indonesia  -------- ini password
+	 login
+	!
+	dst
+Password kita bisa terbaca karena disimpan dalam bentuk plain text oleh sistem tanpa enkripsi
+Cara enkripsinya adalah
+	ROUTER_GEDUNG_B#configure terminal 
+	ROUTER_GEDUNG_B(config)#enable secret belajar  ------ pasword diganti "belajar" , bukan "kunci" lagi
+cara cek nya
+exit hingga sampai ke User Exec Mode
+	ROUTER_GEDUNG_B>enable 
+	Password:
+cek lagi sudah terenkripsi atau belum
+	ROUTER_GEDUNG_B#show running-config 
+	hostname ROUTER_GEDUNG_B
+	!
+	!
+	!
+	enable secret 5 $1$mERr$21VFgrZ7zXoh8lQ7ZGDku. -------- ini password baru yang sudah terenkripsi
+	enable password kunci -------- ini	 password lama
+	!
+	!
+	dst dst
+	!
+	!
+	line con 0
+	 password indonesia
+ 
+*KONFIGURASI MEMBERIKAN PESAN DI HALAMAN LOGIN MOTD (MESSAGE OF THE DAY)
+===========
+	ROUTER_GEDUNG_B#configure terminal 
+	ROUTER_GEDUNG_B(config)#banner motd &=== PIHAK YG TIDAK BERKEPENTINGAN DILARANG MASUK !!! ===&
+hasilnya
+exit sampai ke User Exec Mode
+
+	=== PIHAK YG TIDAK BERKEPENTINGAN DILARANG MASUK !!! ===
+
+	User Access Verification
+
+	Password: 
+	
+
+* 2 JENIS KONFIGURASI CISCO ROUTER
+==========
+1. Running Config
+Berisi konfigurasi yang saat ini berjalan yang tersimpan di RAM
+commandya : 
+	ROUTER_GEDUNG_B#show running-config 
+Karena disimpan di RAM maka konfigurasi hilang saat Router Dimatikan
+	
+2. Startup Config
+Berisi konfigurasi yang berjalan dan konfigurasinya Permanen
+Konfigurasi ini menimpa diVRAM
+Konfig ulang password Exec Mode seperti diatas
+	Router(config)#hostname ROUTERKU
+	ROUTERKU(config)#banner motd &&=== Uji Coba StartUp Config ==&&
+	ROUTERKU(config)#enable secret belajar
+	ROUTERKU(config)#line console 0
+	ROUTERKU(config-line)#password indonesia
+Cara copy konfigurasi ini agar jadi Startup Config dengan cara
+	ROUTERKU#copy running-config startup-config
+	Destination filename [startup-config]? 
+	Building configuration...
+	[OK]
+Melihat konfigurasi di StartUp Config
+	show startup-config 
+	Using 780 bytes
+	!
+	version 12.2
+	hostname ROUTERKU
+	!
+	enable secret 5 $1$mERr$21VFgrZ7zXoh8lQ7ZGDku.
+	!
+	!
+	banner motd ^C^C
+	!
+	line con 0
+	 password indonesia
+	 login
+	!
+	end
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
