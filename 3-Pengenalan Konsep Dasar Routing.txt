@@ -71,7 +71,7 @@ PC1 Ke PC3
 	Reply from 192.168.2.1: bytes=32 time<1ms TTL=127
 PC4 ke PC2
 	C:\>ping 192.168.1.2
-	Reply from 192.168.2.1: bytes=32 time<1ms TTL=127
+	Reply from 192.168.2.1: bytes=32 time<1ms TTL=127.
 
 
 Sumber pembelajaran :
