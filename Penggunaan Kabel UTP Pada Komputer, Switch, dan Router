@@ -1,0 +1,20 @@
+Kabel UTP (Unshielded Twisted Pair) adalah suatu kabel yang digunakan sebagai media penghubung antar computer dan peralatan jaringan (hub atau switch). Kabel UTP merupakan salah satu kabel yang paling popular saat yang di gunakan untuk membuat jaringan computer.
+Penggunaan kabel UTP sendiri dibagi menjadi 2 tipe, yaitu 
+Straight Cable dan Crossover Cable dimana kedua tipe tersebut mempunyai aturan dan cara penggunaannya sendiri pada devices jaringan.
+
+1. Straight Cable
+Straight Cable merupakan kabel yang memiliki cara pemasangan yang sama antara ujung satu dengan ujung yang lainnya. Contoh penggunaan kabel straight adalah sebagai berikut :
+* Menghubungkan antara computer dengan switch
+* Menghubungkan computer dengan LAN pada modem cable/DSL
+* Menghubungkan router dengan LAN pada modem cable/DSL
+* Menghubungkan switch ke router
+* Menghubungkan hub ke router.
+
+2. Cross Cable
+Kabel cross merupakan kabel yang memiliki susunan berbeda antara ujung satu dengan ujung lainnya. Kabel cross digunakan untuk menghubungkan 2 device yang sama. Contoh penggunaan kabel cross adalah sebagai berikut :
+* Menghubungkan 2 buah komputer secara langsung
+* Menghubungkan 2 buah switch
+* Menghubungkan 2 buah hub
+* Menghubungkan switch dengan hub
+* Menghubungkan komputer dengan router.
+
