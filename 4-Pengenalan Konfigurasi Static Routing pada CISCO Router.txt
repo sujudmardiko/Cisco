@@ -1,0 +1,106 @@
+Pengenalan Konfigurasi Static Routing pada CISCO Router
+===============
+Buat konfigurasi
+PC1 : 192.168.1.1
+PC2 : 192.168.1.2
+Konfigurasi Routernya Ip Address router 192.168.1.254
+	Interface router FastEthernet0/0
+	Router(config)#interface fastEthernet 0/0
+	Router(config-if)#ip address 192.168.1.254 255.255.255.0 
+	Router(config-if)#no shutdown 
+
+PC3 : 192.168.2.1
+PC4 : 192.168.2.2
+Konfigurasi Routernya Ip Address router 192.168.2.254
+	Interface router FastEthernet 0/0
+	Router(config-if)#ip address 192.168.2.254 255.255.255.0 
+	Router(config-if)#no shutdown 
+
+Cek konfigurasi router
+	Router#show ip interface brief 
+atau di
+	Router#show running-config
+
+Agar PC bisa konek ke router maka jangan lupa setting Gateway nya
+Gateway yang dipakai
+PC1 dan PC2 GW : 192.168.1.254(alamat ip Router)
+PC3 dan PC4 GW : 192.168.2.254(alamat ip Router)
+Cek dengan ipconfig
+Uji Koneksi
+ping ke ip router
+ping ke ip address pc sebelahnya
+ping dari sisi router ke PC
+	
+==
+Menghubungkan 2 router
+Dengan menggunakan kabel Copper Cross Over
+
+Konfigurasi Network Addres dari dua router
+Kita buat Network addres dari router adalah 192.168.10.0
+Router 1 : 192.168.10.1
+Router 2 : 192.168.10.2
+Caranya
+Konfig router 1
+	Router(config)#interface fastEthernet 1/0
+	Router(config-if)#ip address 192.168.10.1 255.255.255.0
+	Router(config-if)#no shutdown 
+Konfig router 2
+	Router(config)#interface fastEthernet 1/0
+	Router(config-if)#ip address 192.168.10.2 255.255.255.0
+	Router(config-if)#no shutdown 
+Test konfigurasi di masing masing router
+	Router#show ip interface brief 
+	FastEthernet1/0        192.168.10.2    YES manual up  up  (berarti sudah Ok)
+
+Coba test koneksi
+PC1 dan PC2 ke PC3 dan PC4 hasilnya (Destination Unreachable)
+PC3 dan PC4 ke PC1 dan PC2 hasilnya (Destination Unreachable) 
+Oleh karena itu kita butuh Konfigurasi Routing Static untuk menjembatani dari Network Addres 1 (192.168.1.0) ke Network Addres 2 (192.168.2.0)
+
+Konfigurasi routing Static
+===========================
+Caranya
+Cek dulu routing di 
+Router1
+	Router#show ip route
+hasilnya
+	C    192.168.1.0/24 is directly connected, FastEthernet0/0  (Konfigurasi ip ke network addres 1)
+	C    192.168.10.0/24 is directly connected, FastEthernet1/0	(Konfigurasi ip ke router 1)
+Tambahkan routing Static nya di Router 1 (192.168.10.1)
+	Router(config)#ip route 192.168.2.0 255.255.255.0 192.168.10.2 (Network Addres2 192.168.2.0, netmask, Via Router2 192.168.10.2 )
+Cek apakah sudah masuk ke konfigurasi routingnya
+	Router#show ip route
+	
+	C    192.168.1.0/24 is directly connected, FastEthernet0/0
+	S    192.168.2.0/24 [1/0] via 192.168.10.2 	--- sudah masuk konfigurasi nya, menambahkan Network Addres2 192.168.2.0/24 Via Router2 192.168.10.2
+	C    192.168.10.0/24 is directly connected, FastEthernet1/0
+	
+Router2
+	Router#show ip route
+hasilnya
+	C    192.168.2.0/24 is directly connected, FastEthernet0/0
+	C    192.168.10.0/24 is directly connected, FastEthernet1/0
+Tambahkan routing Static nya di Router 2 (192.168.10.2)
+	Router(config)#ip route 192.168.1.0 255.255.255.0 192.168.10.1 (Network Addres2 192.168.1.0, netmask, Via Router2 192.168.10.1 )
+Cek apakah sudah masuk ke konfigurasi routingnya
+	Router#show ip route
+	
+	S    192.168.1.0/24 [1/0] via 192.168.10.1	--- sudah masuk konfigurasi nya, menambahkan Network Addres1 192.168.1.0/24 Via Router2 192.168.10.1
+	C    192.168.2.0/24 is directly connected, FastEthernet0/0
+	C    192.168.10.0/24 is directly connected, FastEthernet1/0
+
+Test koneksi
+PC1 dan PC2 ke PC3 dan PC4
+PC3 dan PC4 ke PC1 dan PC2
+
+
+CATATAN PENTING
+1. Setiap perangkat pada jangan komputer pada dasarnya hanya bisa berkomuniasi dalam satu network addres yg sama
+2. Router dapat dipakai untuk menjembatani antar Network address yang berbeda
+3. Router pada dasarnya adalah komputer yang memiliki beberapa network interface dengan network address yg berbeda beda
+4. Setelah memastikan setiap PC terkoneksi dengan routernya kita juga perlu melakukan konfigurasi Default Gateway pada setiap PC 
+5. Dalam topologi yang menyertakan beberapa router dan network address yang berbeda perlu dipasitkan agar routing table pada setiap routernya sudah mencakup setiap network address 
+	
+	
+Sumber belajar:
+https://www.youtube.com/watch?v=pZXqzPCD3cM&t=249s
