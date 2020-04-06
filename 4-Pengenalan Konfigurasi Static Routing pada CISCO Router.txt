@@ -99,7 +99,7 @@ CATATAN PENTING
 2. Router dapat dipakai untuk menjembatani antar Network address yang berbeda
 3. Router pada dasarnya adalah komputer yang memiliki beberapa network interface dengan network address yg berbeda beda
 4. Setelah memastikan setiap PC terkoneksi dengan routernya kita juga perlu melakukan konfigurasi Default Gateway pada setiap PC 
-5. Dalam topologi yang menyertakan beberapa router dan network address yang berbeda perlu dipasitkan agar routing table pada setiap routernya sudah mencakup setiap network address 
+5. Dalam topologi yang menyertakan beberapa router dan network address yang berbeda perlu dipasitkan agar routing table pada setiap routernya sudah mencakup setiap network address.
 	
 	
 Sumber belajar:
